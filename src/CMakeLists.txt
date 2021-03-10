@@ -1,3 +1,5 @@
 add_subdirectory(ui)
 add_subdirectory(progression_finder)
 add_subdirectory(int_array)
+
+target_link_libraries(progression_finder int_array)
