@@ -1,0 +1,35 @@
+os: linux
+language: minimal
+services:
+  - docker
+
+before-install:
+  docker build -t kam1runtez/ci .
+
+# todo build artifacts
+
+jobs:
+  include:
+    - name: "checks"
+      script:
+        - docker run -v `pwd`:`pwd` -w `pwd` --cap-add=SYS_PTRACE -t kam1runtez/ci scripts/checks.sh
+
+    - name: "quality"
+      script:
+        - docker run -v `pwd`:`pwd` -w `pwd` -t kam1runtez/ci scripts/static_analyze.sh
+
+    - name: "unit_tests"
+      script:
+        - docker run -v `pwd`:`pwd` -w `pwd` -t kam1runtez/ci scripts/tests.sh
+
+    - name: "coverage"
+      script:
+        - docker run -v `pwd`:`pwd` -w `pwd` -t  kam1runtez/ci scripts/coverage.sh
+
+
+notifications:
+  email: false
+
+branches:
+  except:
+    - master
