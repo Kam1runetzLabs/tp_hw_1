@@ -6,8 +6,8 @@
 #include <stddef.h>
 
 typedef struct {
-    int *begin;
-    int *end;
+  int *begin;
+  int *end;
 } int_array_t;
 
 typedef int *iterator;
