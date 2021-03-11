@@ -28,11 +28,10 @@ jobs:
   - name: coverage
     script: "./scripts/coverage.sh"
 
-
 deploy:
    provider: releases
-   github_token: "$GITHUB_TOKEN"
-   skip_cleanup: true
+   api_key: "$GITHUB_TOKEN"
+   cleanup: false
    user: Kam1runetzLabs
    file: | 
     static-analyze-report-src/*
