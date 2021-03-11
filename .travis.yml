@@ -31,12 +31,13 @@ jobs:
 
 deploy:
    provider: releases
-   github-token: "$GITHUB_TOKEN"
+   github_token: "$GITHUB_TOKEN"
    skip_cleanup: true
    user: Kam1runetzLabs
-   file: static-analyze-report-src/*
-   file: static-analyze-report-tests/*
-   file: coverage-report/*
+   file: | 
+    static-analyze-report-src/*
+    static-analyze-report-tests/*
+    coverage-report/*
    tag_name: "$TRAVIS_TAG"
    target_commitish: "$TRAVIS_COMMIT"
    name: "$TRAVIS_TAG"
