@@ -22,13 +22,13 @@ jobs:
     - "./scripts/static_analyze.sh"
   - name: linters
     script:
-    - "./kam1runetz/ci scripts/linters.sh"
+    - "./scripts/linters.sh"
   - name: unit_tests
     script:
-    - "./kam1runetz/ci scripts/tests.sh"
+    - "./scripts/tests.sh"
   - name: coverage
     script:
-    - "./kam1runetz/ci scripts/coverage.sh"
+    - "./scripts/coverage.sh"
 deploy:
 - provider: releases
   file:
