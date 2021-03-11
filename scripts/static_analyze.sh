@@ -3,14 +3,8 @@
 CXX_CPPCHECK_OPTIONS="--language=c --std=c11 --verbose "
 C_CPPCHECK_OPTIONS="--language=c++ --std=c++11 --verbose "
 
-files=`find . -name "*.c" -or -name "*.h" -or -name "*.cpp" -or -name "*hpp" | grep -v "./tools/*"`
-for file in $files
-do
-echo 
-echo "Checking $(basename -- $file) ..."
-if [ "*pp"=="${file##*.}" ]; then
-    cppcheck $CXX_CPPCHECK_OPTIONS $file
-else
-    cppcheck $C_CPPCHECK_OPTIONS $file
-fi
-done
+cppcheck $C_CPPCHECK_OPTIONS --xml --xml-version=2 ./src 2>report-src.xml
+cppcheck-htmlreport --file=report-src.xml --report-dir=report-src
+
+cppcheck $CXX_CPPCHECK_OPTIONS --xml --xml-version=2 ./tests 2>report-tests.xml
+cppcheck-htmlreport --file=report-tests.xml --report-dir=report-tests
