@@ -1,6 +1,7 @@
 os: linux
 dist: focal
 addons:
+  artifacts: true
   apt:
     packages:
     - valgrind
@@ -21,7 +22,6 @@ env:
 
 install:
   - pip3 install cpplint
-  - gem install travis-artifacts
 
 jobs:
   include:
@@ -39,11 +39,23 @@ jobs:
 
   - name: coverage
     script: ./scripts/coverage.sh
-    after_script:
-      travis-artifacts upload --path coverage-report/*
 
+deploy:
+  provider: releases
+  file: coverage-report/*
+  tag_name: $TRAVIS_TAG
+  target_commitish: $TRAVIS_COMMIT
+  name: $TRAVIS_TAG
+  overwrite: true
 notifications:
   email: false
+
+before_deploy:
+  - git config --local user.name "Kam1runetz"
+  - git config --local user.email "notsoserious2017@gmail.com"
+  - export TRAVIS_TAG="build-$TRAVIS_BUILD_NUMBER"
+  - echo "Tagging commit ${TRAVIS_COMMIT} with tag ${TRAVIS_TAG}"
+  - git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
 
 branches:
   except:
