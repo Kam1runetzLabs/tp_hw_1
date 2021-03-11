@@ -39,17 +39,21 @@ deploy:
   tag_name: "$TRAVIS_TAG"
   target_commitish: "$TRAVIS_COMMIT"
   name: "$TRAVIS_TAG"
+  skip_cleanup: true
   overwrite: true
   on:
     branch: development
+
 notifications:
   email: false
+
 before_deploy:
 - git config --local user.name "Kam1runetz"
 - git config --local user.email "notsoserious2017@gmail.com"
 - export TRAVIS_TAG="build-$TRAVIS_BUILD_NUMBER"
 - echo "Tagging commit ${TRAVIS_COMMIT} with tag ${TRAVIS_TAG}"
 - git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
+
 branches:
   except:
   - master
