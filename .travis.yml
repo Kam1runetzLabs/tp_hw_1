@@ -21,20 +21,20 @@ jobs:
     name: "Linter Processing"
     script: "./scripts/linters.sh"
 
-    name: "Static Analizyng"
   - stage: static_analyze
+    name: "Static Analizyng"
     script: "./scripts/static_analyze.sh"
 
-    name: "Memory Checks"
   - stage: memory_checks
+    name: "Memory Checks"
     script: "./scripts/checks.sh"
 
-    name: "Unit Tests"
   - stage: unit_tests
+    name: "Unit Tests"
     script: "./scripts/tests.sh"
 
-    name: "Coverage"
   - stage: coverage
+    name: "Coverage"
     script: "./scripts/coverage.sh"
 
     deploy:
