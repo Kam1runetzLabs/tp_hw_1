@@ -17,26 +17,35 @@ install:
 - pip3 install cpplint
 jobs:
   include:
-  - name: memory_checks
-    script: "./scripts/checks.sh"
-  - name: static_analyze
-    script: "./scripts/static_analyze.sh"
-  - name: linters
+  - stage: linters
+    name: "Linter Processing"
     script: "./scripts/linters.sh"
-  - name: unit_tests
+
+    name: "Static Analizyng"
+  - stage: static_analyze
+    script: "./scripts/static_analyze.sh"
+
+    name: "Memory Checks"
+  - stage: memory_checks
+    script: "./scripts/checks.sh"
+
+    name: "Unit Tests"
+  - stage: unit_tests
     script: "./scripts/tests.sh"
-  - name: coverage
+
+    name: "Coverage"
+  - stage: coverage
     script: "./scripts/coverage.sh"
 
-deploy:
-   provider: releases
-   api_key: "$GITHUB_TOKEN"
-   cleanup: false
-   user: Kam1runetzLabs
-   file: | 
-     - "static-analyze-report-src/*"
-     - "static-analyze-report-tests/*"
-     - "coverage-report/*"
+    deploy:
+      provider: releases
+      token: "$GITHUB_TOKEN "
+      cleanup: false
+      user: Kam1runetzLabs
+      file: | 
+       - "static-analyze-report-src/*"
+       - "static-analyze-report-tests/*"
+       - "coverage-report/*"
    tag_name: "$TRAVIS_TAG"
    target_commitish: "$TRAVIS_COMMIT"
    name: "$TRAVIS_TAG"
