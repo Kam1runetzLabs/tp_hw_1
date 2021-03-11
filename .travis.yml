@@ -1,7 +1,6 @@
 os: linux
 dist: focal
 addons:
-  artifacts: true
   apt:
     packages:
     - valgrind
