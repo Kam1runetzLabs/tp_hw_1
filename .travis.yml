@@ -1,5 +1,6 @@
 os: linux
 dist: focal
+
 addons:
   apt:
     packages:
@@ -13,8 +14,10 @@ addons:
     - gcc
     - g++
     - python3-pip
+
 install:
 - pip3 install cpplint
+
 jobs:
   include:
   - stage: linters
@@ -37,21 +40,21 @@ jobs:
     name: "Coverage"
     script: "./scripts/coverage.sh"
 
-    deploy:
-      provider: releases
-      token: "$GITHUB_TOKEN "
-      cleanup: false
-      user: Kam1runetzLabs
-      file: | 
-       - "static-analyze-report-src/*"
-       - "static-analyze-report-tests/*"
-       - "coverage-report/*"
-   tag_name: "$TRAVIS_TAG"
-   target_commitish: "$TRAVIS_COMMIT"
-   name: "$TRAVIS_TAG"
-   overwrite: true
-   on:
-     branch: development
+deploy:
+    provider: releases
+    token: "$GITHUB_TOKEN"
+    cleanup: false
+    user: Kam1runetzLabs
+    file: | 
+      - "static-analyze-report-src/*"
+      - "static-analyze-report-tests/*"
+      - "coverage-report/*"
+    tag_name: "$TRAVIS_TAG"
+    target_commitish: "$TRAVIS_COMMIT"
+    name: "$TRAVIS_TAG"
+    overwrite: true
+    on:
+      branch: development
 
 notifications:
   email: false
@@ -61,6 +64,7 @@ before_deploy:
   - git config --local user.email "notsoserious2017@gmail.com"
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
+
 branches:
   except:
   - master
