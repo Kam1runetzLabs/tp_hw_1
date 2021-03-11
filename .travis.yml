@@ -13,49 +13,38 @@ addons:
     - gcc
     - g++
     - python3-pip
-
-env:
-  global:
-    secure: "Bs1hLfki8qYtaz10UzH/ImZF1CBJ9CNwSMNGx8w5W3BVhdbaNJGU5Co7YFy9J1VQ/uOzJ9bcr+U2Jxkt7XicMsk/zIYSg3C4Q2Ts9dpLtAjKykjLUCW+1Rs+QSg4GagVKxobcp8/xMG9PNaMXhvb32OBN8LMUbLOa5zKM/PCe5aEgnJ4UJUUtyCMN0oR3bggYN4RrtjSo3Ff2gx9HdbmyfIbqGkpSuekC/n/bKGzU3Enn3/vjJcPErwy9gAF00HL/BWgkDQfC0SKD2WdVtjxz53hb173DpTGiAt/EZsOS8Nav1pi7kvaVADNqw0ILMUcRc8UHJ99/oIzzq0/ql0+bel2XZjKEirAKjWgZq51Td8RX/JfV3M8c5qDIeUMX+moQfyWGR5wgMJqt5yvmswT20l+ThJCn0L0mJtbf0FGTzlq690jrXhhw0CZtl9MECgR0Dr50rA3wrVT5y3qIYPc3vtLPw2LJkcttMuiJToidBNcZAYPPWpvS+RCFUU7CdjO2zf08QYSdXD6bYwRdWwTaMVIeIvCsMw5AqWaZLQ1doj8BgToi6iXsiZQWZalDa+LeGfhy25OHwVqANEIBpf34mjHTsPErmH59Cad2RKpS4EzhBu+tmuK/uzcbXNBRyYX4bEBj3tbDqq9GRkFNSkXVs9gsyliKkkXu3zbuqeJJzs="
-
-
 install:
-  - pip3 install cpplint
-
+- pip3 install cpplint
 jobs:
   include:
   - name: memory_checks
-    script: ./scripts/checks.sh
-
+    script: "./scripts/checks.sh"
   - name: static_analyze
-    script: ./scripts/static_analyze.sh
-
+    script: "./scripts/static_analyze.sh"
   - name: linters
-    script: ./scripts/linters.sh
-
+    script: "./scripts/linters.sh"
   - name: unit_tests
-    script: ./scripts/tests.sh
-
+    script: "./scripts/tests.sh"
   - name: coverage
-    script: ./scripts/coverage.sh
-
+    script: "./scripts/coverage.sh"
 deploy:
   provider: releases
+  user: Kam1runetz
   file: coverage-report/*
-  tag_name: $TRAVIS_TAG
-  target_commitish: $TRAVIS_COMMIT
-  name: $TRAVIS_TAG
+  tag_name: "$TRAVIS_TAG"
+  target_commitish: "$TRAVIS_COMMIT"
+  name: "$TRAVIS_TAG"
   overwrite: true
+  password:
+    secure: "t2HmOpQB7QSENWkP8E9wiH3FHNUz41k//qouFNbG0mwJ5IjmxNDy4SCpF61FTxIi23bD5f2OAnAg+D0iiEEUe3DHQbLGmDgwza6JXDVHOqhw6ZsTCjuRG5teKqoj0UijAaAKxgEWFQuF0HazoOQuqJkltxBZ/cyYuyeGXmmeZmQe8Q2vdjAEZRyoh/DxguGFFtPxuUMCTXv5qD+CZn86zbHO1wtV9lKPo5XK2ZZHX3SjW2DHwtF8VtzF3WR2HIRzJ4evvZZZA8+nphiuI6CRz8JZaYsO2Z6+4wjn2ib4o62HPaKUAk9lor5YpiMR//cs0YjReNTo1BoWKZl4A4ZzIiwrjQ3Q7fs8XMpRvHeDkvG6ROGBNSnIkSx2MLCJoSmECZSObPh5ozsj3wy+gRU6N6cvoKG7X7JinFhNK1j9OvG9LLBfcBRClMtFO8q0ZSZiHXX5QGdPYVcJLXIP+ZrY/GeNKE7NRDw/HfuzOgIzl15q48IN7jTQ3mBpLOqyCKqEsJov+XzFrNzPBFx0bVoG0emsZclKyehhPDzXjwCvac+E8SOiOufzQ60aXYhWEAt55g7x5qvqG9PF5MIhjaIMYDPgwJJkUbMDhwjIEIvobUGVgekMxL7Rc/Avt8Fv94h+Wl8ETB9vEonewyV+W6U7F7mcKnJ60gyXgSrNY7LgmZ8="
 notifications:
   email: false
-
 before_deploy:
-  - git config --local user.name "Kam1runetz"
-  - git config --local user.email "notsoserious2017@gmail.com"
-  - export TRAVIS_TAG="build-$TRAVIS_BUILD_NUMBER"
-  - echo "Tagging commit ${TRAVIS_COMMIT} with tag ${TRAVIS_TAG}"
-  - git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
-
+- git config --local user.name "Kam1runetz"
+- git config --local user.email "notsoserious2017@gmail.com"
+- export TRAVIS_TAG="build-$TRAVIS_BUILD_NUMBER"
+- echo "Tagging commit ${TRAVIS_COMMIT} with tag ${TRAVIS_TAG}"
+- git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
 branches:
   except:
-    - master
+  - master
