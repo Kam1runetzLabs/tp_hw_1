@@ -30,8 +30,6 @@ jobs:
 
   - name: static_analyze
     script: ./scripts/static_analyze.sh
-    after_script:
-      travis-artifacts upload --path coverage-report/*
 
   - name: linters
     script: ./scripts/linters.sh
@@ -41,6 +39,8 @@ jobs:
 
   - name: coverage
     script: ./scripts/coverage.sh
+    after_script:
+      travis-artifacts upload --path coverage-report/*
 
 notifications:
   email: false
