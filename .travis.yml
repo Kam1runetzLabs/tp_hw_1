@@ -41,7 +41,8 @@ deploy:
   - stat_analyze-report-src/*
   - stat_analyze-report-tests/*
   skip_cleanup: true
-  tags: true
+  on:
+    tags: true
 notifications:
   email: false
 branches:
