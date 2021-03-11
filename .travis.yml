@@ -32,6 +32,7 @@ jobs:
  deploy:
    provider: releases
    github-token: $GITHUB_TOKEN
+   skip_cleanup: true
    user: Kam1runetzLabs
    file: static-analyze-report-src/*
    file: static-analyze-report-tests/*
@@ -39,7 +40,6 @@ jobs:
    tag_name: "$TRAVIS_TAG"
    target_commitish: "$TRAVIS_COMMIT"
    name: "$TRAVIS_TAG"
-   skip_cleanup: true
    overwrite: true
    on:
      branch: development
