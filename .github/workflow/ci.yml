@@ -1,3 +1,4 @@
+name: CCI
 os: linux
 dist: focal
 addons:
