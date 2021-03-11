@@ -6,8 +6,6 @@ services:
 before-install:
   docker build -t kam1runetz/ci .
 
-# todo build artifacts
-
 jobs:
   include:
     - name: "memory_checks"
@@ -30,6 +28,8 @@ jobs:
       script:
         - docker run -v `pwd`:`pwd` -w `pwd` -t  kam1runetz/ci scripts/coverage.sh
 
+after_succsess:
+  - docker run -v `pwd`:`pwd` -w `pwd` -t kam1runetz/ci scripts/push_report.sh
 
 notifications:
   email: false
