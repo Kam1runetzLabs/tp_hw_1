@@ -29,8 +29,8 @@ add_subdirectory(demo)
 add_subdirectory(src)
 
 if (BUILD_TESTS)
-    add_subdirectory(tests)
     enable_testing()
+    add_subdirectory(tests)
 endif ()
 
 if (BUILD_COVERAGE)
