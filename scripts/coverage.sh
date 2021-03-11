@@ -9,6 +9,7 @@ CMAKE_TOOLCHAIN_OPTS="-DCMAKE_TOOLCHAIN_FILE='$(pwd)/tools/polly/gcc-pic.cmake'"
 CMAKE_OPTS="$CMAKE_CONFIG_OPTS $CMAKE_TOOLCHAIN_OPTS"
 
 # todo fix cover
+# todo html cover report
 cmake -H. -B_builds -DBUILD_COVERAGE=ON "$CMAKE_OPTS"
 cmake --build _builds
 cmake --build _builds --target test

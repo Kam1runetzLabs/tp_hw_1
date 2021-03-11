@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_TESTS "Build tests" ON)
 option(BUILD_COVERAGE "Build coverage" OFF)
-option(CMAKE_BUILD_DEBUG "Build debug" OFF)
 
 include("tools/gate/cmake/HunterGate.cmake")
 
@@ -17,16 +16,6 @@ HunterGate(
 )
 
 project(first_homework VERSION 0.1.0)
-
-string(APPEND CMAKE_C_FLAGS " -pedantic -Werror -Wall -Wextra")
-string(APPEND CMAKE_C_FLAGS " -Wno-unused-command-line-argument")
-string(APPEND CMAKE_C_FLAGS " -Wshadow")
-string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
-string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
-string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
-
-add_subdirectory(demo)
-add_subdirectory(src)
 
 if (BUILD_TESTS)
     enable_testing()
@@ -38,7 +27,13 @@ if (BUILD_COVERAGE)
     string(APPEND CMAKE_CXX_FLAGS " --coverage")
 endif ()
 
-if (CMAKE_BUILD_DEBUG)
-    string(APPEND CMAKE_C_FLAGS " -g")
-    string(APPEND CMAKE_CXX_FLAGS " -g")
-endif ()
+string(APPEND CMAKE_C_FLAGS " -pedantic -Werror -Wall -Wextra")
+string(APPEND CMAKE_C_FLAGS " -Wno-unused-command-line-argument")
+string(APPEND CMAKE_C_FLAGS " -Wshadow")
+string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
+string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
+string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
+
+add_subdirectory(demo)
+add_subdirectory(src)
+
