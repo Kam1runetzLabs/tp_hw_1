@@ -12,7 +12,6 @@ addons:
       - clang
       - gcc
       - g++
-      - cpplint
 
 jobs:
   include:
@@ -35,6 +34,15 @@ jobs:
     - name: "coverage"
       script:
         - ./kam1runetz/ci scripts/coverage.sh
+deploy:
+  - provider: releases
+    api_key:
+      secure: [hash]
+    file:
+      - linux.zip
+      - win.zip
+    skip_cleanup: true
+    tags: true
 
 notifications:
   email: false
