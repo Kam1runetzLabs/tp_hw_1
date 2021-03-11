@@ -20,6 +20,10 @@ static const_iterator find_progression(const_iterator begin,
 
 ptrdiff_t find_longest_progression(const int_array_t *array,
                                    int_array_t **dest) {
+  if (!dest) {
+    return -1;
+  }
+
   if (!array) {
     dest = NULL;
     return -1;

@@ -8,3 +8,5 @@ cppcheck-htmlreport --file=stat-analyze-report-src.xml --report-dir=covergae-rep
 
 cppcheck $CXX_CPPCHECK_OPTIONS --xml --xml-version=2 ./tests 2>stat-analyze-report-tests.xml
 cppcheck-htmlreport --file=stat-analyze-report-tests.xml --report-dir=stat-analyze-report-tests
+
+rm *.xml

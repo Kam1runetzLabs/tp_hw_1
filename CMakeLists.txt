@@ -17,15 +17,16 @@ HunterGate(
 
 project(first_homework VERSION 0.1.0)
 
+if (BUILD_COVERAGE)
+    string(APPEND CMAKE_CXX_FLAGS " -lgcov --coverage")
+    string(APPEND CMAKE_C_FLAGS " -lgcov --coverage")
+endif ()
+
 if (BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif ()
 
-if (BUILD_COVERAGE)
-    string(APPEND CMAKE_C_FLAGS " --coverage")
-    string(APPEND CMAKE_CXX_FLAGS " --coverage")
-endif ()
 
 string(APPEND CMAKE_C_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_C_FLAGS " -Wno-unused-command-line-argument")
