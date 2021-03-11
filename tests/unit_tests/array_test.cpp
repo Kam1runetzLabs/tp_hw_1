@@ -2,8 +2,9 @@
 
 #include <gtest/gtest.h>
 
-extern "C" {
-#include <int_array.h>
-}
-
 TEST(EmptyTest, EmptyTest) { EXPECT_TRUE(true); }
+
+int main(int argc, char *argv[]) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
