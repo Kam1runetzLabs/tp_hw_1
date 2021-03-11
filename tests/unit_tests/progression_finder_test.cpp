@@ -12,7 +12,7 @@ TEST(error_handling, array_is_null) {
   int_array_t *array = nullptr;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
-  EXPECT_TRUE(progression_size < 0);
+  EXPECT_LT(progression_size, 0);
   EXPECT_FALSE(progression);
 }
 
@@ -21,7 +21,7 @@ TEST(error_handling, array_without_mem) {
   array->begin = array->end = nullptr;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
-  EXPECT_TRUE(progression_size < 0);
+  EXPECT_LT(progression_size, 0);
   EXPECT_FALSE(progression);
   free(array);
 }
@@ -36,7 +36,7 @@ TEST(error_handling, invalid_initialized_array) {
   array->end = mem + end_index;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
-  EXPECT_TRUE(progression_size < 0);
+  EXPECT_LT(progression_size, 0);
   EXPECT_FALSE(progression);
   delete[] mem;
   free(array);
@@ -46,7 +46,7 @@ TEST(error_handling, null_dest_transmitted) {
   const size_t array_size = 5;
   int_array_t *array = init_array(array_size);
   ptrdiff_t size = find_longest_progression(array, nullptr);
-  EXPECT_TRUE(size < 0);
+  EXPECT_LT(size, 0);
   delete_array(array);
 }
 
