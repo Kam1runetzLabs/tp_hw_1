@@ -31,14 +31,20 @@ deploy:
   provider: releases
   user: Kam1runetz
   file: coverage-report/*
+  file: static_analyze-report-tests/*
+  file: static_analyze-report-src/*
   tag_name: "$TRAVIS_TAG"
   target_commitish: "$TRAVIS_COMMIT"
   name: "$TRAVIS_TAG"
   overwrite: true
   password:
     secure: "t2HmOpQB7QSENWkP8E9wiH3FHNUz41k//qouFNbG0mwJ5IjmxNDy4SCpF61FTxIi23bD5f2OAnAg+D0iiEEUe3DHQbLGmDgwza6JXDVHOqhw6ZsTCjuRG5teKqoj0UijAaAKxgEWFQuF0HazoOQuqJkltxBZ/cyYuyeGXmmeZmQe8Q2vdjAEZRyoh/DxguGFFtPxuUMCTXv5qD+CZn86zbHO1wtV9lKPo5XK2ZZHX3SjW2DHwtF8VtzF3WR2HIRzJ4evvZZZA8+nphiuI6CRz8JZaYsO2Z6+4wjn2ib4o62HPaKUAk9lor5YpiMR//cs0YjReNTo1BoWKZl4A4ZzIiwrjQ3Q7fs8XMpRvHeDkvG6ROGBNSnIkSx2MLCJoSmECZSObPh5ozsj3wy+gRU6N6cvoKG7X7JinFhNK1j9OvG9LLBfcBRClMtFO8q0ZSZiHXX5QGdPYVcJLXIP+ZrY/GeNKE7NRDw/HfuzOgIzl15q48IN7jTQ3mBpLOqyCKqEsJov+XzFrNzPBFx0bVoG0emsZclKyehhPDzXjwCvac+E8SOiOufzQ60aXYhWEAt55g7x5qvqG9PF5MIhjaIMYDPgwJJkUbMDhwjIEIvobUGVgekMxL7Rc/Avt8Fv94h+Wl8ETB9vEonewyV+W6U7F7mcKnJ60gyXgSrNY7LgmZ8="
+  on:
+    branch: development
+
 notifications:
   email: false
+
 before_deploy:
 - git config --local user.name "Kam1runetz"
 - git config --local user.email "notsoserious2017@gmail.com"
