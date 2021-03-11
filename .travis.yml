@@ -28,21 +28,22 @@ jobs:
   - name: coverage
     script: "./scripts/coverage.sh"
 
-env:
-  global:
-    secure: ySaMV8E45/12S1pzaeDaVZ7EZLAVcbt06u629AkznF5y0TPF6YfDPYDNFozfhS6xozy5VEAixoPzFpsR3lpdpI0eW6TcZjLgAbMTzulhzhLS+aSDHVASW53Hm45KSsacMb0yUqWARRsWjSlMYAHwHmyl/IejC9v9BOiqdgUzzQZRIvD6eucJ1Vdup1CyPc9t143ZP+l6LHYgD0qP3zB10/MxqJe+99I8D9neIRQyWL/vswhmAKnUoiRz122c8XrEg6CBMOQMFOEE9pJAApGLW8MXYgvFKY/0wZT9lJWuIoNDQBBu5hCRpPWg+amuYKHl8tPPlSUusWNqac+iCf1LxVwDmL+LZkgQKMYID5H5gydgphkJHC776SGuAth1DfzhCrC1uUI1ip1Uw6TeywTZdW1O3tCyiFp8DaDOn1JtZXrznuU2DBP8DPr9pafzk+wHqmDxJhtsFHAFRuhoiTRMnRweG2TR7psA+wA16dP+GU1frGt7DoXBSnQE2NlSFn2MPwtRLHMbICilzlFHpq9iDjmfoR0hncITHPXhXIqNJKuJjjD7KEE3Kw3eHK8/Of/JzMpm8DW1Xl9NI0gl5gri0ww5SdU9vokrpYUPS1/bJl9143G+xdb2zuav4QfIGn0GUx+9HcErwbDobvChSstBrxuP2lY8ELBg4/kDqPY505M=
 
-deploy:
-  provider: releases
-  user: Kam1runetzLabs
-  file: static_analyze-report-src/*
-  tag_name: "$TRAVIS_TAG"
-  target_commitish: "$TRAVIS_COMMIT"
-  name: "$TRAVIS_TAG"
-  skip_cleanup: true
-  overwrite: true
-  on:
-    branch: development
+ deploy:
+   provider: releases
+   api-key:
+     secure: "E8Lm38UwCsU2X8kogZawLvq7zGYFJvkBwlAhAKSBrNmocNEyVQnn5UZ2qnw+wLfI6sLuL/lXbGuY88g8riJA6qdO+uZ4jUvMh/gsERqRxyEhkxPHEOUW3+cCLFBqqoXrEZ4RDfAlvgc73/KOWOc2UjYy0+mPb8M6TalHE/FgrIKmwsGkKKXIbV+ESVKhYz1JlzTURA8tQttU4/QkZIVy4hOAkMWOR3RWpm6sCGf32oWJnapJebbtp0jcPYaNOyVRVv9pWwqtxYelXsHAlYXk1IvCftHDofJsny4bABCA72eaVfYMQOOp8CYlvYKq60Fol+pk6NvLJSdaLR7A3Zkkqmsez8CHMGDN65TEo+bd2SDSrM4CYGOb0Eb1i2FE/XQ+j/MGy6NFSoRQOnBGIIx7dGaqOi2/sFZKI21XkwWOTI3WByJDZ1jl0vPbweEGarg8ehoj5A1OE84PD8lzQ9NILKSsbPlSskoAH4bpM6OZ3zQ6jYYUbx3k+IrKW72VlLwl5fOd3FQ5DQLjR17KQwK18qOPBI/oM4uQUMD/qyNE9dv/O8iSWALpGxrkjUMdCndfXTMKfTi+hPBxAfKvp9/sFkSqrTLALqbisTQ64OyriAD2V/8eQc0DkXBbwVbH+ABSGuq3ypX/oM+Ix1derG1bqqu/GMH2SsucCIuOpmj4PrM="
+   user: Kam1runetzLabs
+   file: static-analyze-report-src/*
+   file: static-analyze-report-tests/*
+   file: coverage-report/*
+   tag_name: "$TRAVIS_TAG"
+   target_commitish: "$TRAVIS_COMMIT"
+   name: "$TRAVIS_TAG"
+   skip_cleanup: true
+   overwrite: true
+   on:
+     branch: development
 
 notifications:
   email: false
