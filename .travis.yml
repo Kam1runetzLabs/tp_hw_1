@@ -34,9 +34,9 @@ deploy:
    cleanup: false
    user: Kam1runetzLabs
    file: | 
-    static-analyze-report-src/*
-    static-analyze-report-tests/*
-    coverage-report/*
+     - "static-analyze-report-src/*"
+     - "static-analyze-report-tests/*"
+     - "coverage-report/*"
    tag_name: "$TRAVIS_TAG"
    target_commitish: "$TRAVIS_COMMIT"
    name: "$TRAVIS_TAG"
@@ -48,12 +48,10 @@ notifications:
   email: false
 
 before_deploy:
-- git config --local user.name "Kam1runetz"
-- git config --local user.email "notsoserious2017@gmail.com"
-- export TRAVIS_TAG="build-$TRAVIS_BUILD_NUMBER"
-- echo "Tagging commit ${TRAVIS_COMMIT} with tag ${TRAVIS_TAG}"
-- git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT"
-
+  - git config --local user.name "Kam1runetz"
+  - git config --local user.email "notsoserious2017@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
 branches:
   except:
   - master
