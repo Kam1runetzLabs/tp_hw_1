@@ -27,24 +27,23 @@ jobs:
     script: "./scripts/tests.sh"
   - name: coverage
     script: "./scripts/coverage.sh"
+
+env:
+  global:
+    secure: ySaMV8E45/12S1pzaeDaVZ7EZLAVcbt06u629AkznF5y0TPF6YfDPYDNFozfhS6xozy5VEAixoPzFpsR3lpdpI0eW6TcZjLgAbMTzulhzhLS+aSDHVASW53Hm45KSsacMb0yUqWARRsWjSlMYAHwHmyl/IejC9v9BOiqdgUzzQZRIvD6eucJ1Vdup1CyPc9t143ZP+l6LHYgD0qP3zB10/MxqJe+99I8D9neIRQyWL/vswhmAKnUoiRz122c8XrEg6CBMOQMFOEE9pJAApGLW8MXYgvFKY/0wZT9lJWuIoNDQBBu5hCRpPWg+amuYKHl8tPPlSUusWNqac+iCf1LxVwDmL+LZkgQKMYID5H5gydgphkJHC776SGuAth1DfzhCrC1uUI1ip1Uw6TeywTZdW1O3tCyiFp8DaDOn1JtZXrznuU2DBP8DPr9pafzk+wHqmDxJhtsFHAFRuhoiTRMnRweG2TR7psA+wA16dP+GU1frGt7DoXBSnQE2NlSFn2MPwtRLHMbICilzlFHpq9iDjmfoR0hncITHPXhXIqNJKuJjjD7KEE3Kw3eHK8/Of/JzMpm8DW1Xl9NI0gl5gri0ww5SdU9vokrpYUPS1/bJl9143G+xdb2zuav4QfIGn0GUx+9HcErwbDobvChSstBrxuP2lY8ELBg4/kDqPY505M=
+
 deploy:
   provider: releases
   user: Kam1runetzLabs
-  file: coverage-report/*
-  file: static_analyze-report-tests/*
   file: static_analyze-report-src/*
   tag_name: "$TRAVIS_TAG"
   target_commitish: "$TRAVIS_COMMIT"
   name: "$TRAVIS_TAG"
   overwrite: true
-  password:
-    secure: "t2HmOpQB7QSENWkP8E9wiH3FHNUz41k//qouFNbG0mwJ5IjmxNDy4SCpF61FTxIi23bD5f2OAnAg+D0iiEEUe3DHQbLGmDgwza6JXDVHOqhw6ZsTCjuRG5teKqoj0UijAaAKxgEWFQuF0HazoOQuqJkltxBZ/cyYuyeGXmmeZmQe8Q2vdjAEZRyoh/DxguGFFtPxuUMCTXv5qD+CZn86zbHO1wtV9lKPo5XK2ZZHX3SjW2DHwtF8VtzF3WR2HIRzJ4evvZZZA8+nphiuI6CRz8JZaYsO2Z6+4wjn2ib4o62HPaKUAk9lor5YpiMR//cs0YjReNTo1BoWKZl4A4ZzIiwrjQ3Q7fs8XMpRvHeDkvG6ROGBNSnIkSx2MLCJoSmECZSObPh5ozsj3wy+gRU6N6cvoKG7X7JinFhNK1j9OvG9LLBfcBRClMtFO8q0ZSZiHXX5QGdPYVcJLXIP+ZrY/GeNKE7NRDw/HfuzOgIzl15q48IN7jTQ3mBpLOqyCKqEsJov+XzFrNzPBFx0bVoG0emsZclKyehhPDzXjwCvac+E8SOiOufzQ60aXYhWEAt55g7x5qvqG9PF5MIhjaIMYDPgwJJkUbMDhwjIEIvobUGVgekMxL7Rc/Avt8Fv94h+Wl8ETB9vEonewyV+W6U7F7mcKnJ60gyXgSrNY7LgmZ8="
   on:
     branch: development
-
 notifications:
   email: false
-
 before_deploy:
 - git config --local user.name "Kam1runetz"
 - git config --local user.email "notsoserious2017@gmail.com"
