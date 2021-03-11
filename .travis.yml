@@ -29,9 +29,9 @@ jobs:
     script: "./scripts/coverage.sh"
 
 
- deploy:
+deploy:
    provider: releases
-   github-token: $GITHUB_TOKEN
+   github-token: "$GITHUB_TOKEN"
    skip_cleanup: true
    user: Kam1runetzLabs
    file: static-analyze-report-src/*
