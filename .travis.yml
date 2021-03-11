@@ -31,8 +31,7 @@ jobs:
 
  deploy:
    provider: releases
-   api-key:
-     secure: "E8Lm38UwCsU2X8kogZawLvq7zGYFJvkBwlAhAKSBrNmocNEyVQnn5UZ2qnw+wLfI6sLuL/lXbGuY88g8riJA6qdO+uZ4jUvMh/gsERqRxyEhkxPHEOUW3+cCLFBqqoXrEZ4RDfAlvgc73/KOWOc2UjYy0+mPb8M6TalHE/FgrIKmwsGkKKXIbV+ESVKhYz1JlzTURA8tQttU4/QkZIVy4hOAkMWOR3RWpm6sCGf32oWJnapJebbtp0jcPYaNOyVRVv9pWwqtxYelXsHAlYXk1IvCftHDofJsny4bABCA72eaVfYMQOOp8CYlvYKq60Fol+pk6NvLJSdaLR7A3Zkkqmsez8CHMGDN65TEo+bd2SDSrM4CYGOb0Eb1i2FE/XQ+j/MGy6NFSoRQOnBGIIx7dGaqOi2/sFZKI21XkwWOTI3WByJDZ1jl0vPbweEGarg8ehoj5A1OE84PD8lzQ9NILKSsbPlSskoAH4bpM6OZ3zQ6jYYUbx3k+IrKW72VlLwl5fOd3FQ5DQLjR17KQwK18qOPBI/oM4uQUMD/qyNE9dv/O8iSWALpGxrkjUMdCndfXTMKfTi+hPBxAfKvp9/sFkSqrTLALqbisTQ64OyriAD2V/8eQc0DkXBbwVbH+ABSGuq3ypX/oM+Ix1derG1bqqu/GMH2SsucCIuOpmj4PrM="
+   github-token: $GITHUB_TOKEN
    user: Kam1runetzLabs
    file: static-analyze-report-src/*
    file: static-analyze-report-tests/*
