@@ -13,7 +13,7 @@ addons:
     - gcc
     - g++
     - python3-pip
-script:
+install:
   - pip3 install cpplint
 jobs:
   include:
@@ -32,6 +32,9 @@ jobs:
   - name: coverage
     script:
     - "./scripts/coverage.sh"
+env:
+  global:
+    secure: Bs1hLfki8qYtaz10UzH/ImZF1CBJ9CNwSMNGx8w5W3BVhdbaNJGU5Co7YFy9J1VQ/uOzJ9bcr+U2Jxkt7XicMsk/zIYSg3C4Q2Ts9dpLtAjKykjLUCW+1Rs+QSg4GagVKxobcp8/xMG9PNaMXhvb32OBN8LMUbLOa5zKM/PCe5aEgnJ4UJUUtyCMN0oR3bggYN4RrtjSo3Ff2gx9HdbmyfIbqGkpSuekC/n/bKGzU3Enn3/vjJcPErwy9gAF00HL/BWgkDQfC0SKD2WdVtjxz53hb173DpTGiAt/EZsOS8Nav1pi7kvaVADNqw0ILMUcRc8UHJ99/oIzzq0/ql0+bel2XZjKEirAKjWgZq51Td8RX/JfV3M8c5qDIeUMX+moQfyWGR5wgMJqt5yvmswT20l+ThJCn0L0mJtbf0FGTzlq690jrXhhw0CZtl9MECgR0Dr50rA3wrVT5y3qIYPc3vtLPw2LJkcttMuiJToidBNcZAYPPWpvS+RCFUU7CdjO2zf08QYSdXD6bYwRdWwTaMVIeIvCsMw5AqWaZLQ1doj8BgToi6iXsiZQWZalDa+LeGfhy25OHwVqANEIBpf34mjHTsPErmH59Cad2RKpS4EzhBu+tmuK/uzcbXNBRyYX4bEBj3tbDqq9GRkFNSkXVs9gsyliKkkXu3zbuqeJJzs=
 deploy:
 - provider: releases
   file:
@@ -45,6 +48,3 @@ notifications:
 branches:
   except:
   - master
-env:
-  global:
-    secure: Bs1hLfki8qYtaz10UzH/ImZF1CBJ9CNwSMNGx8w5W3BVhdbaNJGU5Co7YFy9J1VQ/uOzJ9bcr+U2Jxkt7XicMsk/zIYSg3C4Q2Ts9dpLtAjKykjLUCW+1Rs+QSg4GagVKxobcp8/xMG9PNaMXhvb32OBN8LMUbLOa5zKM/PCe5aEgnJ4UJUUtyCMN0oR3bggYN4RrtjSo3Ff2gx9HdbmyfIbqGkpSuekC/n/bKGzU3Enn3/vjJcPErwy9gAF00HL/BWgkDQfC0SKD2WdVtjxz53hb173DpTGiAt/EZsOS8Nav1pi7kvaVADNqw0ILMUcRc8UHJ99/oIzzq0/ql0+bel2XZjKEirAKjWgZq51Td8RX/JfV3M8c5qDIeUMX+moQfyWGR5wgMJqt5yvmswT20l+ThJCn0L0mJtbf0FGTzlq690jrXhhw0CZtl9MECgR0Dr50rA3wrVT5y3qIYPc3vtLPw2LJkcttMuiJToidBNcZAYPPWpvS+RCFUU7CdjO2zf08QYSdXD6bYwRdWwTaMVIeIvCsMw5AqWaZLQ1doj8BgToi6iXsiZQWZalDa+LeGfhy25OHwVqANEIBpf34mjHTsPErmH59Cad2RKpS4EzhBu+tmuK/uzcbXNBRyYX4bEBj3tbDqq9GRkFNSkXVs9gsyliKkkXu3zbuqeJJzs=
