@@ -6,10 +6,10 @@
 #define ENTER_NUMBER(type, spec)            \
   {                                         \
     type ret_value = 0;                     \
-    int error_code = 0;                     \
-    do {                                    \
-      error_code = scanf(spec, &ret_value); \
-    } while (error_code != 1);              \
+    while (scanf(spec, &ret_value) != 1) {  \
+      scanf("%*[^\n]");                     \
+      printf("Invalid input!\n%s", prompt); \
+    };                                      \
     return ret_value;                       \
   }
 
