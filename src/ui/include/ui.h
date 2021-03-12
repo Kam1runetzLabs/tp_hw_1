@@ -8,7 +8,7 @@
 static const char welcome_message[] = "====ARITHMETIC PROGRESSION FINDER====";
 static const char help_message[] =
     "To find longest arithmetic progression in array you need to enter array "
-    "size and array elements in format"
+    "size and array elements in format\n"
     ">> [size] <Return>\n"
     ">> [element_1] <Return>\n"
     "...\n"

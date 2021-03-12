@@ -22,11 +22,13 @@ int main(int argc, char *argv[]) {
   if (argc > 1) {
     if (!strcmp(help_flag, argv[1]) || !strcmp(help_flag_alias, argv[1])) {
       printf("%s\n", help_message);
+      return 0;
     } else {
       HANDLE_ERROR(invalid_args_msg);
     }
   }
 
+  printf("%s\n", help_message);
   printf("%s\n", welcome_message);
   printf("%s", prompt);
   size_t size = get_size();
