@@ -31,7 +31,7 @@ jobs:
         run: scripts/static_analyze.sh
 
       - name: "save static analyze report"
-        uses: action/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: static-analyzer-report
           path: static-analyze-report/
@@ -49,7 +49,7 @@ jobs:
         run: scripts/coverage.sh
 
       - name: "save coverage report"
-        uses: action/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: coverage-report
           path: coverage-report/
