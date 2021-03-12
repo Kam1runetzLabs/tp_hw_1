@@ -37,9 +37,8 @@ ptrdiff_t find_longest_progression(const int_array_t *array,
   }
 
   if (array->end - array->begin == 1) {
-    *dest = init_array_from_mem(array->begin, array->end);
-    if (!*dest) return -1;
-    return 1;
+    dest = NULL;
+    return -1;
   }
 
   const_iterator begin_progression = array->begin;

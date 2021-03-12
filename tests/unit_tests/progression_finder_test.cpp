@@ -54,10 +54,8 @@ TEST(algorithm_testing, progression_from_single_size_array) {
   int_array_t *array = init_array(1);
   int_array_t *progression = nullptr;
   ptrdiff_t size = find_longest_progression(array, &progression);
-  EXPECT_EQ(*progression->begin, *array->begin);
-  EXPECT_EQ(size, 1);
-  delete_array(array);
-  delete_array(progression);
+  EXPECT_FALSE(progression);
+  EXPECT_LT(size, 0);
 }
 
 TEST(algorithm_testing, finding_longest_progression) {

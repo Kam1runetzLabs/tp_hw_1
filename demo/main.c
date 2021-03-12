@@ -31,7 +31,11 @@ int main(int argc, char *argv[]) {
   printf("%s\n", help_message);
   printf("%s\n", welcome_message);
   printf("%s", prompt);
+
   size_t size = get_size();
+  if (size == 1)
+    HANDLE_ERROR("array to find must contain more than one element");
+
   int_array_t *array = init_array(size);
   if (!array) HANDLE_ERROR("internal allocation error");
 
