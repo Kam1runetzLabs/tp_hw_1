@@ -9,7 +9,7 @@
     while (scanf(spec, &ret_value) != 1) {  \
       scanf("%*[^\n]");                     \
       printf("Invalid input!\n%s", prompt); \
-    };                                      \
+    }                                       \
     return ret_value;                       \
   }
 
