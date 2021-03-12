@@ -15,17 +15,17 @@ jobs:
 
       - name: "preparing environment"
         run: |
-          - sudo apt update
-          - sudo apt install cmake
-          - sudo apt install git
-          - sudo apt install valgrind
-          - sudo apt install cppcheck
-          - sudo apt install gcovr
-          - sudo apt install gcc
-          - sudo apt install g++
-          - sudo apt install python3-pip
-          - sudo pip3 install cpplint
-          - git submodule update --init --recursive
+           sudo apt update
+           sudo apt install cmake
+           sudo apt install git
+           sudo apt install valgrind
+           sudo apt install cppcheck
+           sudo apt install gcovr
+           sudo apt install gcc
+           sudo apt install g++
+           sudo apt install python3-pip
+           sudo pip3 install cpplint
+           git submodule update --init --recursive
 
       - name: "static analyze"
         run: scripts/static_analyze.sh
