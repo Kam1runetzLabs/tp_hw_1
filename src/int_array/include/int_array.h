@@ -13,19 +13,19 @@ typedef struct {
 typedef int *iterator;
 typedef const int *const_iterator;
 
-///\brief initialize array with transmitted size
-///\param size - size of the array to create
-///\return pointer to the created array or NULL if allocation error happened
+///@brief - создает целочисленный массив заданного размера
+///@param size - размер создаваемого массива
+///@return указатель на инициализированный массив или NULL в случае ошибки
 int_array_t *init_array(size_t size);
 
-///\brief initialize array by copy of existing array
-///\param begin - start of copying memory
-///\param end - end of copying memory
-///\return pointer to the created array or NULL if error
+///@brief инициализирует массив как копию уже выделенной памяти
+///@param begin - начало копируемого участка памяти
+///@param end - конец копируемого участка памяти
+///@return указатель на инициализированный массив или NULL в случае ошибки
 int_array_t *init_array_from_mem(const_iterator begin, const_iterator end);
 
-///\brief frees the memory from the array
-///\param array - pointer to array to delete, may be NULL
+///@brief освобождает память, выделенную под массив
+///@param array - указатель на удаляемый массив, может быть не валидным
 void delete_array(int_array_t *array);
 
 #endif  // INCLUDE_INT_ARRAY_H_

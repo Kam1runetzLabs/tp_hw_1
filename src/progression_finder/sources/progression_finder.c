@@ -2,9 +2,6 @@
 
 #include <progression_finder.h>
 
-///\param begin -
-///\param end -
-///\return
 static const_iterator find_progression(const_iterator begin,
                                        const_iterator end) {
   int delta = *(begin + 1) - *begin;

@@ -6,10 +6,11 @@
 #include <int_array.h>
 #include <stddef.h>
 
-///\brief this function find longest arithmetic progression in array
-///\param src - array in which the search will occur
-///\param dest - result progression
-///\return length of longest progression
+///@brief находит подмассив, составляющий арифметическую прогрессию максимальной
+///длины
+///@param src - массив, в котором будет происходить поиск
+///@param dest - указатель на массив, в который будет сохранена прогрессия
+///@return длина наибольшей прогрессии или -1 в случае ошибки
 ptrdiff_t find_longest_progression(const int_array_t *src, int_array_t **dest);
 
 #endif  // INCLUDE_PROGRESSION_FINDER_H_
