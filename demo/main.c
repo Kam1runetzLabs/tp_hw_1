@@ -1,11 +1,12 @@
 // Copyright 2021 Kam1runetzLabs <notsoserious2017@gmail.com>
 
-#include <int_array.h>
-#include <progression_finder.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ui.h>
+
+#include "int_array.h"
+#include "progression_finder.h"
+#include "ui.h"
 
 #define HANDLE_ERROR(msg)         \
   {                               \

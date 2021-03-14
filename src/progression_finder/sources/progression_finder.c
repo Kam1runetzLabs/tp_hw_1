@@ -1,6 +1,6 @@
 // Copyright 2021 Kam1runetzLabs <notsoserious2017@gmail.com>
 
-#include <progression_finder.h>
+#include "progression_finder.h"
 
 static const_iterator find_progression(const_iterator begin,
                                        const_iterator end) {

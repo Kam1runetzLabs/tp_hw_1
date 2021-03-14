@@ -1,7 +1,8 @@
 // Copyright 2021 Kam1runetzLabs <notsoserious2017@gmail.com>
 
+#include "ui.h"
+
 #include <stdio.h>
-#include <ui.h>
 
 #define ENTER_NUMBER(type, spec)            \
   {                                         \

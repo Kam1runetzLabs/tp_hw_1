@@ -3,12 +3,13 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include <int_array.h>
 #include <malloc.h>
-#include <progression_finder.h>
+
+#include "int_array.h"
+#include "progression_finder.h"
 }
 
-TEST(error_handling, array_is_null) {
+TEST(ERROR_HANDLING, ARRAY_IS_NULL) {
   int_array_t *array = nullptr;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
@@ -16,7 +17,7 @@ TEST(error_handling, array_is_null) {
   EXPECT_FALSE(progression);
 }
 
-TEST(error_handling, array_without_mem) {
+TEST(ERROR_HANDLING, ARRAY_WITHOUT_MEM) {
   auto *array = (int_array_t *)malloc(sizeof(int_array_t));
   array->begin = array->end = nullptr;
   int_array_t *progression = nullptr;
@@ -26,7 +27,7 @@ TEST(error_handling, array_without_mem) {
   free(array);
 }
 
-TEST(error_handling, invalid_initialized_array) {
+TEST(ERROR_HANDLING, INVALID_INITIALIZED_ARRAY) {
   auto *array = (int_array_t *)malloc(sizeof(int_array_t));
   const size_t mem_size = 10;
   const size_t beg_index = 8;
@@ -42,7 +43,7 @@ TEST(error_handling, invalid_initialized_array) {
   free(array);
 }
 
-TEST(error_handling, null_dest_transmitted) {
+TEST(ERROR_HANDLING, NULL_DEST_TRANSMITTED) {
   const size_t array_size = 5;
   int_array_t *array = init_array(array_size);
   ptrdiff_t size = find_longest_progression(array, nullptr);
@@ -50,7 +51,7 @@ TEST(error_handling, null_dest_transmitted) {
   delete_array(array);
 }
 
-TEST(algorithm_testing, progression_from_single_size_array) {
+TEST(ALGORITHM_TESTING, PROGRESSION_FROM_SINGLE_SIZE_ARRAY) {
   int_array_t *array = init_array(1);
   int_array_t *progression = nullptr;
   ptrdiff_t size = find_longest_progression(array, &progression);
@@ -58,7 +59,7 @@ TEST(algorithm_testing, progression_from_single_size_array) {
   EXPECT_LT(size, 0);
 }
 
-TEST(algorithm_testing, finding_longest_progression) {
+TEST(ALGORITHM_TESTING, FINDING_LONGEST_PROGRESSION) {
   const size_t array_size = 9;
   int array[array_size] = {1, 2, 3, 4, 8, 10, 12, 14, 16};
   const size_t short_progression_size = 4;

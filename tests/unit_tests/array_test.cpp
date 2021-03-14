@@ -2,25 +2,25 @@
 
 #include <gtest/gtest.h>
 extern "C" {
-#include <int_array.h>
+#include "int_array.h"
 }
 
 const size_t test_array_size = 123;
 const size_t invalid_test_array_size = -1;
 
-TEST(init_array, default_init_array) {
+TEST(INIT_ARRAY, DEFAULT_INIT_ARRAY) {
   int_array_t *array = init_array(test_array_size);
   EXPECT_TRUE(array);
   EXPECT_TRUE(array->begin);
   delete_array(array);
 }
 
-TEST(init_array, init_with_invalid_size) {
+TEST(INIT_ARRAY, INIT_WITH_INVALID_SIZE) {
   int_array_t *array = init_array(invalid_test_array_size);
   EXPECT_FALSE(array);
 }
 
-TEST(init_array, default_init_from_mem) {
+TEST(INIT_ARRAY, DEFAULT_INIT_FROM_MEM) {
   int *array = new int[test_array_size];
   const size_t beg_index = 1;
   const size_t end_index = 5;
@@ -34,14 +34,14 @@ TEST(init_array, default_init_from_mem) {
   delete[] array;
 }
 
-TEST(init_array, init_from_mem_with_null_mem) {
+TEST(INIT_ARRAY, INIT_FROM_MEM_WITH_NULL_MEM) {
   int *beg_mem = nullptr;
   int *end_mem = nullptr;
   int_array_t *int_array = init_array_from_mem(beg_mem, end_mem);
   EXPECT_FALSE(int_array);
 }
 
-TEST(init_array, init_from_mem_with_invalid_mem) {
+TEST(INIT_ARRAY, INIT_FROM_MEM_WITH_INVALID_MEM) {
   int *array = new int[test_array_size];
   const size_t beg_index = 5;
   const size_t end_index = 1;
@@ -51,7 +51,7 @@ TEST(init_array, init_from_mem_with_invalid_mem) {
   delete[] array;
 }
 
-TEST(delete_array, default_delete_array) {
+TEST(DELETE_ARRAY, DEFAULT_DELETE_ARRAY) {
   int_array_t *array = init_array(test_array_size);
   if (!array) FAIL() << "internal error";
   if (!array->begin) FAIL() << "internal error";

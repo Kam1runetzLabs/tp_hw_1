@@ -1,8 +1,9 @@
 // Copyright 2021 Kam1runetzLabs <notsoserious2017@gmail.com>
 
-#include <int_array.h>
 #include <memory.h>
 #include <stdlib.h>
+
+#include "int_array.h"
 
 int_array_t *init_array(size_t size) {
   if (!size) return NULL;
