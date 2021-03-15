@@ -51,10 +51,26 @@ TEST(INIT_ARRAY, INIT_FROM_MEM_WITH_INVALID_MEM) {
   delete[] array;
 }
 
+TEST(INIT_ARRAY, INIT_ARRAY_WITH_NULL_SIZE) {
+  int_array_t *array = init_array(0);
+  EXPECT_FALSE(array);
+}
+
 TEST(DELETE_ARRAY, DEFAULT_DELETE_ARRAY) {
   int_array_t *array = init_array(test_array_size);
   if (!array) FAIL() << "internal error";
   if (!array->begin) FAIL() << "internal error";
+  delete_array(array);
+}
+
+TEST(DELETE_ARRAY, DELETE_NULL_ARRAY) {
+  int_array_t *array = NULL;
+  delete_array(array);
+}
+
+TEST(DELETE_ARRAY, DELETE_INVALID_ARRAY) {
+  auto array = (int_array_t *)malloc(sizeof(int_array_t));
+  array->begin = NULL;
   delete_array(array);
 }
 
