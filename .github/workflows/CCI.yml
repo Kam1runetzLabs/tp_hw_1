@@ -8,16 +8,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
 
       - name: "preparing environment"
         run: |
-          wget -nv https://download.opensuse.org/repositories/home:stevenpusser/xUbuntu_20.04/Release.key -O Release.key
-          sudo apt-key add - < Release.key
-          sudo apt update
           sudo apt update
           sudo apt install cmake
           sudo apt install git
