@@ -8,19 +8,19 @@ extern "C" {
 const size_t test_array_size = 123;
 const size_t invalid_test_array_size = -1;
 
-TEST(INIT_ARRAY, DEFAULT_INIT_ARRAY) {
+TEST(InitArray, DefaultInitArray) {
   int_array_t *array = init_array(test_array_size);
   EXPECT_TRUE(array);
   EXPECT_TRUE(array->begin);
   delete_array(array);
 }
 
-TEST(INIT_ARRAY, INIT_WITH_INVALID_SIZE) {
+TEST(InitArray, InitWithInvalidSize) {
   int_array_t *array = init_array(invalid_test_array_size);
   EXPECT_FALSE(array);
 }
 
-TEST(INIT_ARRAY, DEFAULT_INIT_FROM_MEM) {
+TEST(InitArray, DefaultInitFromMem) {
   int *array = new int[test_array_size];
   const size_t beg_index = 1;
   const size_t end_index = 5;
@@ -34,14 +34,14 @@ TEST(INIT_ARRAY, DEFAULT_INIT_FROM_MEM) {
   delete[] array;
 }
 
-TEST(INIT_ARRAY, INIT_FROM_MEM_WITH_NULL_MEM) {
+TEST(InitArray, InitFromMemWithNullMem) {
   int *beg_mem = nullptr;
   int *end_mem = nullptr;
   int_array_t *int_array = init_array_from_mem(beg_mem, end_mem);
   EXPECT_FALSE(int_array);
 }
 
-TEST(INIT_ARRAY, INIT_FROM_MEM_WITH_INVALID_MEM) {
+TEST(InitArray, InitFromMemWithInvalidMem) {
   int *array = new int[test_array_size];
   const size_t beg_index = 5;
   const size_t end_index = 1;
@@ -51,24 +51,24 @@ TEST(INIT_ARRAY, INIT_FROM_MEM_WITH_INVALID_MEM) {
   delete[] array;
 }
 
-TEST(INIT_ARRAY, INIT_ARRAY_WITH_NULL_SIZE) {
+TEST(InitArray, InitArrayWithNullSize) {
   int_array_t *array = init_array(0);
   EXPECT_FALSE(array);
 }
 
-TEST(DELETE_ARRAY, DEFAULT_DELETE_ARRAY) {
+TEST(DeleteArray, DefaultDeleteArray) {
   int_array_t *array = init_array(test_array_size);
   if (!array) FAIL() << "internal error";
   if (!array->begin) FAIL() << "internal error";
   delete_array(array);
 }
 
-TEST(DELETE_ARRAY, DELETE_NULL_ARRAY) {
+TEST(DeleteArray, DeleteNullArray) {
   int_array_t *array = NULL;
   delete_array(array);
 }
 
-TEST(DELETE_ARRAY, DELETE_INVALID_ARRAY) {
+TEST(DeleteArray, DeleteInvalidArray) {
   auto array = (int_array_t *)malloc(sizeof(int_array_t));
   array->begin = NULL;
   delete_array(array);

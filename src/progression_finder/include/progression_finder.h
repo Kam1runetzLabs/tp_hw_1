@@ -7,6 +7,15 @@
 
 #include "int_array.h"
 
+typedef enum {
+  ERR_UNINITIALIZED_DEST               = -1,
+  ERR_UNINITIALIZED_SRC_ARR            = -2,
+  ERR_INVALID_INITIALIZED_SRC_ARR      = -3,
+  ERR_INVALID_TRANSMITTED_ITERATORS    = -4,
+  ERR_SINGLE_ELEMENT_ARRAY_TRANSMITTED = -5,
+  ERR_INTERNAL_ALLOCATION_ERROR        = -6
+} errors_code_t;
+
 ///@brief находит подмассив, составляющий арифметическую прогрессию максимальной
 ///длины
 ///@param src - массив, в котором будет происходить поиск

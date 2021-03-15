@@ -9,25 +9,25 @@ extern "C" {
 #include "progression_finder.h"
 }
 
-TEST(ERROR_HANDLING, ARRAY_IS_NULL) {
+TEST(ErrorHandling, ArrayIsNull) {
   int_array_t *array = nullptr;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
-  EXPECT_LT(progression_size, 0);
+  EXPECT_EQ(progression_size, ERR_UNINITIALIZED_SRC_ARR);
   EXPECT_FALSE(progression);
 }
 
-TEST(ERROR_HANDLING, ARRAY_WITHOUT_MEM) {
+TEST(ErrorHandling, ArrayWithoutMem) {
   auto *array = (int_array_t *)malloc(sizeof(int_array_t));
   array->begin = array->end = nullptr;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
-  EXPECT_LT(progression_size, 0);
+  EXPECT_EQ(progression_size, ERR_INVALID_INITIALIZED_SRC_ARR);
   EXPECT_FALSE(progression);
   free(array);
 }
 
-TEST(ERROR_HANDLING, INVALID_INITIALIZED_ARRAY) {
+TEST(ErrorHandling, InvalidInitializedArray) {
   auto *array = (int_array_t *)malloc(sizeof(int_array_t));
   const size_t mem_size = 10;
   const size_t beg_index = 8;
@@ -37,29 +37,29 @@ TEST(ERROR_HANDLING, INVALID_INITIALIZED_ARRAY) {
   array->end = mem + end_index;
   int_array_t *progression = nullptr;
   ptrdiff_t progression_size = find_longest_progression(array, &progression);
-  EXPECT_LT(progression_size, 0);
+  EXPECT_EQ(progression_size, ERR_INVALID_TRANSMITTED_ITERATORS);
   EXPECT_FALSE(progression);
   delete[] mem;
   free(array);
 }
 
-TEST(ERROR_HANDLING, NULL_DEST_TRANSMITTED) {
+TEST(ErrorHandling, NullDestTransmitted) {
   const size_t array_size = 5;
   int_array_t *array = init_array(array_size);
   ptrdiff_t size = find_longest_progression(array, nullptr);
-  EXPECT_LT(size, 0);
+  EXPECT_EQ(size, ERR_UNINITIALIZED_DEST);
   delete_array(array);
 }
 
-TEST(ALGORITHM_TESTING, PROGRESSION_FROM_SINGLE_SIZE_ARRAY) {
+TEST(ErrorHandling, ProgressionFromSingleSizeArray) {
   int_array_t *array = init_array(1);
   int_array_t *progression = nullptr;
   ptrdiff_t size = find_longest_progression(array, &progression);
   EXPECT_FALSE(progression);
-  EXPECT_LT(size, 0);
+  EXPECT_EQ(size, ERR_SINGLE_ELEMENT_ARRAY_TRANSMITTED);
 }
 
-TEST(ALGORITHM_TESTING, FINDING_LONGEST_PROGRESSION) {
+TEST(AlgorithmTesting, FindingLongestProgression) {
   const size_t array_size = 9;
   int array[array_size] = {1, 2, 3, 4, 8, 10, 12, 14, 16};
   const size_t short_progression_size = 4;

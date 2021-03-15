@@ -18,27 +18,27 @@ static const_iterator find_progression(const_iterator begin,
 ptrdiff_t find_longest_progression(const int_array_t *array,
                                    int_array_t **dest) {
   if (!dest) {
-    return -1;
+    return ERR_UNINITIALIZED_DEST;
   }
 
   if (!array) {
     dest = NULL;
-    return -1;
+    return ERR_UNINITIALIZED_SRC_ARR;
   }
 
   if (!array->begin) {
     dest = NULL;
-    return -1;
+    return ERR_INVALID_INITIALIZED_SRC_ARR;
   }
 
   if (array->begin >= array->end) {
     dest = NULL;
-    return -1;
+    return ERR_INVALID_TRANSMITTED_ITERATORS;
   }
 
   if (array->end - array->begin == 1) {
     dest = NULL;
-    return -1;
+    return ERR_SINGLE_ELEMENT_ARRAY_TRANSMITTED;
   }
 
   const_iterator begin_progression = array->begin;
@@ -56,6 +56,6 @@ ptrdiff_t find_longest_progression(const int_array_t *array,
   }
 
   *dest = init_array_from_mem(begin_progression, end_progression);
-  if (!*dest) return -1;
+  if (!*dest) return ERR_INTERNAL_ALLOCATION_ERROR;
   return progression_size;
 }
