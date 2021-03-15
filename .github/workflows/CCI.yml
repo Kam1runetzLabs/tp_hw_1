@@ -15,7 +15,7 @@ jobs:
 
       - name: "preparing environment"
         run: |
-          sudo rm -rf /etc/apt/sources/*
+          sudo rm -rf /etc/apt/sources.list.d/*
           sudo apt update
           sudo apt install cmake
           sudo apt install git
